@@ -1,0 +1,42 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <button (click)="button1Clicked()">Click to get all tasks</button>
+  <h3>tasks are:  </h3>
+
+
+  Enter task ID here: <input #id type="text" name="id">
+  <button (click)="button2Clicked(id.value)" >Click to get one task</button>
+
+  <h2> New Task </h2>
+  <form (submit)="submitNewTask()">
+    <p>{{ newTask | json }}</p>
+    title: <input type="text" name="title" [(ngModel)] = "newTask.title" >
+    description: <input type="text" name="description" [(ngModel)] = "newTask.description" >
+    <input type="submit" value="Create">
+  </form>
+
+  <h3>Tasks List </h3>
+  <div *ngFor="let task of tasks">
+    <p> {{ task.description }} - {{ task.title }} </p>
+    <button (click)="editClicked(task)" >Edit</button>
+    <button (click)="deleteClicked(task)" >Delete</button>
+  </div>
+
+  <div *ngIf="show">
+    <h3>Edit Task</h3>
+
+    <form (submit)="submitEditTask()">
+      <p>{{ editTask | json }}</p>
+      title: <input type="text" name="title" value="editTask" [(ngModel)] = "editTask.title" >
+      description: <input type="text" name="description" value="editTask" [(ngModel)] = "editTask.description" >
+      <input type="submit" value="Edit">
+    </form>
+  </div>
+
+
+
+</div>
+
